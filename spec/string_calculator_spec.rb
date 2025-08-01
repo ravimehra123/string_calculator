@@ -33,8 +33,16 @@ RSpec.describe StringCalculator do
       expect { calculator.add('1,-3,5,-8') }.to raise_error(NegativeNumberError, 'Negative numbers are not allowed: -3, -8')
     end
 
+    it 'raises error with repeated negative numbers only once' do
+      expect { calculator.add('-5,-5,-1') }.to raise_error(NegativeNumberError, "Negative numbers are not allowed: -5, -1")
+    end
+
     it 'ignores numbers greater than 1000' do
       expect(calculator.add('2,1001')).to eq(2)
+    end
+
+    it 'supports custom delimiters of any length' do
+      expect(calculator.add('//[*][%]\n1*2%3')).to eq(6)
     end
   end
 end
