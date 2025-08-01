@@ -8,6 +8,9 @@ class StringCalculator
     return numbers.first.to_i if numbers.size == 1
 
     numbers = numbers.map(&:to_i)
+    negatives = numbers.select { |n| n < 0 }.uniq
+
+    raise NegativeNumberError.new(negatives) unless negatives.empty?
     numbers.sum
   end
 end
