@@ -1,18 +1,24 @@
 class StringCalculator
-  def add(string)
-    return 0 if string.empty?
+  def add(input)
+    return 0 if input.strip.empty?
 
-    string = string.gsub('\n', ',')
-    string = string.gsub(/[^0-9\-]+/, ',')
-    numbers = string.split(',')
-    return numbers.first.to_i if numbers.size == 1
+    numbers = normalize_and_extract_numbers(input)
+    validate_no_negatives!(numbers)
 
+    numbers.map { |num| num > 1000 ? 0 : num }.sum
+  end
 
-    numbers = numbers.map(&:to_i)
-    numbers = numbers.map {|number| number > 1000 ? 0 : number }
+  private
+
+  def normalize_and_extract_numbers(input)
+    sanitized = input.gsub('\n', ',').gsub(/[^0-9\-]+/, ',')
+    parts = sanitized.split(',').reject(&:empty?)
+
+    parts.map(&:to_i)
+  end
+
+  def validate_no_negatives!(numbers)
     negatives = numbers.select { |n| n < 0 }.uniq
-
     raise NegativeNumberError.new(negatives) unless negatives.empty?
-    numbers.sum
   end
 end
