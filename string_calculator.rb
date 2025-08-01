@@ -7,7 +7,9 @@ class StringCalculator
     numbers = string.split(',')
     return numbers.first.to_i if numbers.size == 1
 
+
     numbers = numbers.map(&:to_i)
+    numbers = numbers.map {|number| number > 1000 ? 0 : number }
     negatives = numbers.select { |n| n < 0 }.uniq
 
     raise NegativeNumberError.new(negatives) unless negatives.empty?
