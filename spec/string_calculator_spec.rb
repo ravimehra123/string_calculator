@@ -23,5 +23,9 @@ RSpec.describe StringCalculator do
     it 'handles newline characters as separators' do
       expect(calculator.add('1\\n2,3')).to eq(6)
     end
+
+    it 'handles random separators and whitespace' do
+      expect(calculator.add(" 3\n, 4 &%$#@!,6")).to eq(13)
+    end
   end
 end
