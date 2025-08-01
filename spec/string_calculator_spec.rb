@@ -12,12 +12,16 @@ RSpec.describe StringCalculator do
       expect(calculator.add('7')).to eq(7)
     end
 
-    it 'sums two numbers' do
+    it 'adds two numbers' do
       expect(calculator.add('3,4')).to eq(7)
     end
 
-    it 'sums multiple numbers' do
+    it 'adds multiple numbers' do
       expect(calculator.add('2,3,4')).to eq(9)
+    end
+
+    it 'handles newline characters as separators' do
+      expect(calculator.add('1\\n2,3')).to eq(6)
     end
   end
 end
