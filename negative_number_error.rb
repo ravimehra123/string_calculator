@@ -1,5 +1,5 @@
 class NegativeNumberError < StandardError
   def initialize(negatives)
-    super("Negatives numbers are not allowed: #{negatives.join(', ')}")
+    super("Negative numbers are not allowed: #{negatives.join(', ')}")
   end
 end

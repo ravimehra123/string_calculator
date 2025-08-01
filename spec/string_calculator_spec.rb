@@ -1,12 +1,6 @@
 require_relative '../string_calculator'
 require_relative '../negative_number_error'
 
-class NegativeNumberError < StandardError
-  def initialize(negatives)
-    super("Negatives not allowed: #{negatives.join(', ')}")
-  end
-end
-
 RSpec.describe StringCalculator do
   let(:calculator) { StringCalculator.new }
 
@@ -36,7 +30,7 @@ RSpec.describe StringCalculator do
     end
 
     it 'raises error with negative numbers' do
-      expect { calculator.add('1,-3,5,-8') }.to raise_error(NegativeNumberError, "Negatives not allowed: -3, -8")
+      expect { calculator.add('1,-3,5,-8') }.to raise_error(NegativeNumberError, 'Negative numbers are not allowed: -3, -8')
     end
   end
 end
