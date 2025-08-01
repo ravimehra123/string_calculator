@@ -11,5 +11,13 @@ RSpec.describe StringCalculator do
     it 'returns a single number if only one is provided' do
       expect(calculator.add('7')).to eq(7)
     end
+
+    it 'sums two numbers' do
+      expect(calculator.add('3,4')).to eq(7)
+    end
+
+    it 'sums multiple numbers' do
+      expect(calculator.add('2,3,4')).to eq(9)
+    end
   end
 end

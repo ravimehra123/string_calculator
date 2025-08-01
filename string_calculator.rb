@@ -3,6 +3,9 @@ class StringCalculator
     return 0 if string.empty?
 
     numbers = string.split(',')
-    numbers.first.to_i if numbers.size == 1
+    return numbers.first.to_i if numbers.size == 1
+
+    numbers = numbers.map(&:to_i)
+    numbers.sum
   end
 end
